@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 
 const Meme = require("../models/memes");
-const MEME_URL = "https://mymeme.herokuapp.com//memes/"
+const MEME_URL = "https://mymeme.herokuapp.com/memes/"
 
 //GET ALL MEMES
 router.get('/', (req, res) => {
