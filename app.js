@@ -8,9 +8,7 @@ const swaggerUI = require('swagger-ui-express');
 
 const memesRoute = require('./api/routes/memes');
 
-mongoose.connect("mongodb+srv://kundankumar:" + 
-process.env.ATLAS_MONGODB + 
-"@cluster0.lyd4z.mongodb.net/memes?retryWrites=true&w=majority", 
+mongoose.connect("mongodb+srv://kundankumar:kundankumar@cluster0.lyd4z.mongodb.net/memes?retryWrites=true&w=majority", 
 {
     useUnifiedTopology: true,
     useNewUrlParser: true
