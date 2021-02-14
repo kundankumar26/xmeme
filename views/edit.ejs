@@ -37,7 +37,7 @@
         <script>
             const id = window.location.pathname.substring(6);
             console.log(id);
-            axios.get('https://mymeme.herokuapp.com//memes/' + id)
+            axios.get('http://localhost:8081/memes/' + id)
             .then(response => {
                 const meme = response.data;
                 console.log(meme);
@@ -49,7 +49,7 @@
             document.getElementById('updateModal').addEventListener('click', () => {
                 const caption = document.getElementById('meme-caption').value;
                 const url = document.getElementById('meme-url').value;
-                axios.patch('https://mymeme.herokuapp.com//memes/' + id, {
+                axios.patch('http://localhost:8081/memes/' + id, {
                     'caption': caption,
                     'url': url,
                 })
