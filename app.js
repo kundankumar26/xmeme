@@ -48,7 +48,6 @@ const swaggerOptions = {
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-console.log(swaggerDocs);
 
 
 /**
@@ -128,9 +127,15 @@ console.log(swaggerDocs);
  */
 
 app.use('/memes', memesRoute);
-app.use('/home', function(req, res){
+app.use('/edit/:memeId', function(req, res){
+  console.log(req.params.memeId);
+  const memeId = req.params.memeId;
+  res.status(200).render("edit").send(memeId);
+});
+app.use('/', function(req, res){
   res.render("home");
 });
+
 app.use('/swagger-ui', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 app.use((req, res, next) => {

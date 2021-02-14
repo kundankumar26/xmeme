@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>Edit</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+        
+    </head>
+    <body>
+        <h1>Hey tehre</h1>
+        <div class="modal-body">
+            <form>
+            <!-- <div class="form-group">
+                <label for="user-name" class="col-form-label">Name</label>
+                <input type="text" class="form-control" id="meme-user">
+            </div> -->
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Caption</label>
+                <input type="text" class="form-control" id="meme-caption">
+            </div>
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Url</label>
+                <input type="text" class="form-control" id="meme-url">
+            </div>
+            <p id="message"></p>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" onclick="window.history.go(-1); return false;" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="updateModal">Update</button>
+        </div>
+        </div>
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script>
+            const id = window.location.pathname.substring(6);
+            console.log(id);
+            axios.get('http://localhost:3000/memes/' + id)
+            .then(response => {
+                const meme = response.data;
+                console.log(meme);
+                document.getElementById("meme-caption").value = meme.caption;
+                document.getElementById("meme-url").value = meme.url;
+            })
+            .catch(err => {console.log(err)});
+
+            document.getElementById('updateModal').addEventListener('click', () => {
+                const caption = document.getElementById('meme-caption').value;
+                const url = document.getElementById('meme-url').value;
+                axios.patch('http://localhost:3000/memes/' + id, {
+                    'caption': caption,
+                    'url': url,
+                })
+                .then(response => {
+                    document.getElementById('message').innerHTML = "Updated one meme";
+                })
+                .catch(err => {
+                    console.log(err);
+                    document.getElementById('message').innerHTML = "No change detected";
+                });
+            });
+        </script>
+    </body>
+</html>
