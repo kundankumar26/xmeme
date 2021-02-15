@@ -131,11 +131,12 @@ app.use('/edit/:memeId', function(req, res){
   const memeId = req.params.memeId;
   res.status(200).render("edit").send(memeId);
 });
+
+app.use('/swagger-ui', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+
 app.use('/', function(req, res){
   res.render("home");
 });
-
-app.use('/swagger-ui', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 app.use((req, res, next) => {
     const error = new Error('Not Found');
