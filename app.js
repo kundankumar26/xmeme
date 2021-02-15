@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+require("dotenv").config();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -8,7 +9,7 @@ const swaggerUI = require('swagger-ui-express');
 
 const memesRoute = require('./api/routes/memes');
 
-mongoose.connect("mongodb+srv://kundankumar:kundankumar@cluster0.lyd4z.mongodb.net/memes?retryWrites=true&w=majority", 
+mongoose.connect(process.env.MONGODB_URI, 
 {
     useUnifiedTopology: true,
     useNewUrlParser: true
