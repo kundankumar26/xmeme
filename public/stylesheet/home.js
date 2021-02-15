@@ -10,7 +10,7 @@ function addNewMeme(meme) {
 
 const getData = () => {
     $('.list').empty();
-    axios.get('http://localhost:8081/memes')
+    axios.get('https://mymeme.herokuapp.com/memes')
     .then(response => {
         const memes = response.data;
         for(let i = memes.length-1; i >= 0; i--){
