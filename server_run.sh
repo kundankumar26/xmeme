@@ -1,12 +1,12 @@
 
-# #!/bin/bash
+#!/bin/bash
 
 
 
 
-# # Setup DB or any other environment variables you want to setup.
+# Setup DB or any other environment variables you want to setup.
 
 
-# npm install
+npm install
 
-# npm start
+npm start
