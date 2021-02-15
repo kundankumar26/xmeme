@@ -39,7 +39,7 @@ const postData = () => {
     })
     .then(response => {
         $('#message').text("One meme created");
-        getData();
+        
     })
     .catch(err => {
         console.log(err);
@@ -47,6 +47,7 @@ const postData = () => {
     document.getElementById('name').value = " ";
     document.getElementById('caption').value = " ";
     document.getElementById('url').value = " ";
+    getData();
 };
 
 //GET ALL THE MEMES
